@@ -2,14 +2,20 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/ZhengbaoHe/compress-then-merge?style=social)](https://github.com/ZhengbaoHe/compress-then-merge/stargazers)[![BibTeX](https://img.shields.io/badge/BibTeX-Available-brightgreen.svg)](#citation)[![Paper](https://img.shields.io/badge/Paper-OpenReview-blue.svg)](https://openreview.net/forum?id=p32nWlgwYC)[![Conference](https://img.shields.io/badge/ICML-2026-purple.svg)]()
 
-This repository contains the official implementation of **Compress then Merge (CtM)**, accepted to **ICML 2026**.
+**Compress then Merge (CtM)** is a **LoRA model merging** method that merges multiple task-specific LoRA adapters into a **single low-rank LoRA**, while enforcing the rank constraint by construction.
+
+This repository contains the official implementation of **[Compress then Merge: From Multiple LoRAs into One Low-Rank Adapter](...)**, accepted to **ICML 2026**.
+
+
 
 ## ✨ Highlights
 
-- **Compress-then-Merge pepiline**: enforces the low-rank constraint before adapter merging.
+- **Rank-constrained LoRA merging:** CtM reverses the conventional Merge-then-Compress pipeline and enforces the low-rank constraint before merging.
 - **Single low-rank LoRA output**: produces a rank-constrained LoRA by construction.
 - **Robust merging**: improves stability over post-hoc compression baselines.
 - **Compatible with existing LoRA workflows**: designed for standard Transformers + PEFT environments.
+
+
 
 ## 🔍 Overview
 
@@ -23,9 +29,11 @@ We propose **CtM**, which reverses this order. CtM first learns shared low-rank 
   <img src="imgs/overview.jpg" width="85%">
 </p>
 
+
 <p align="center">
   <em>Overview of Compress-then-Merge: low-rank compression is performed before adapter merging.</em>
 </p>
+
 
 ## 🗂️ Code Structure
 
@@ -36,6 +44,8 @@ We propose **CtM**, which reverses this order. CtM first learns shared low-rank 
 - `dataset/` and `models/`: dataset processing utilities and model wrappers.
 
 In this codebase, the main CtM pipeline corresponds to `merge_space=low_rank_core`. MtC-style baselines are evaluated by merging in `full`, `knots`, or `core` space, and then applying post-hoc low-rank truncation with `--low_rank=1 --lora_rank=16`.
+
+
 
 ## 🚀 Getting Started
 
